@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Priyadharsini V M Portfolio</title>
+<meta name="description" content="Senior QA Engineer and QA Lead with 14+ years in test automation, Agile delivery, e-commerce, retail, inventory, banking and insurance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a QA run report. Big name left, a live-looking test-run log right, then sections read like report blocks. */
+:root{
+  --bg:#f3f6f4;
+  --surface:#ffffff;
+  --ink:#14201c;
+  --muted:#53625c;
+  --line:#d6ded9;
+  --accent:#0b7a57;
+  --accent-ink:#ffffff;
+  --accent-soft:#dcf1e8;
+  --font-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --font-body:"Hanken Grotesk","Segoe UI",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1512;--surface:#151f1b;--ink:#e5eee9;--muted:#9aaba3;--line:#25342e;
+    --accent:#4fd1a1;--accent-ink:#06241a;--accent-soft:#16322a;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1512;--surface:#151f1b;--ink:#e5eee9;--muted:#9aaba3;--line:#25342e;
+  --accent:#4fd1a1;--accent-ink:#06241a;--accent-soft:#16322a;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.08;letter-spacing:-.02em}
+p{margin:0}
+.mono{font-family:var(--font-mono)}
+.label{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:56px}
+.brand{font-family:var(--font-display);font-weight:700;text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
+.nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0;overflow-x:auto}
+.nav li a{display:block;padding:6px 10px;border-radius:6px;font-size:14.5px;text-decoration:none;color:var(--muted);white-space:nowrap}
+.nav li a:hover{color:var(--ink);background:var(--accent-soft)}
+
+/* hero */
+.hero{padding:56px 0 64px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;align-items:start}
+.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:13px;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.hero h1{font-size:clamp(46px,8vw,92px);font-weight:800;margin:22px 0 16px}
+.hero .role{font-family:var(--font-display);font-size:clamp(20px,2.6vw,26px);font-weight:500;color:var(--accent);margin-bottom:20px}
+.hero .lede{max-width:56ch;color:var(--muted);font-size:18px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:8px;font-weight:600;font-size:15.5px;text-decoration:none;border:1px solid var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.ghost:hover{background:var(--accent-soft)}
+
+.runlog{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 1px 0 var(--line)}
+.runlog-head{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--accent-soft)}
+.runlog-head span{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.04em}
+.runlog ol{list-style:none;margin:0;padding:6px 0}
+.runlog li{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:baseline;padding:10px 16px;border-bottom:1px dashed var(--line)}
+.runlog li:last-child{border-bottom:0}
+.runlog .tick{font-family:var(--font-mono);font-weight:500;font-size:12px;color:var(--accent-ink);background:var(--accent);padding:1px 7px;border-radius:4px}
+.runlog .name{font-weight:600;font-size:15.5px}
+.runlog .detail{font-family:var(--font-mono);font-size:12.5px;color:var(--muted);text-align:right}
+.runlog-foot{padding:12px 16px;border-top:1px solid var(--line);font-family:var(--font-mono);font-size:12.5px;color:var(--muted)}
+
+/* sections */
+section{padding:72px 0;border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:200px 1fr;gap:32px;margin-bottom:36px}
+.sec-head h2{font-size:clamp(30px,4.4vw,46px);font-weight:700}
+.about-grid{display:grid;grid-template-columns:200px 1fr;gap:32px}
+.about-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 40px}
+.about-body p{color:var(--muted)}
+.about-body p:first-child{grid-column:1/-1;font-size:21px;line-height:1.5;color:var(--ink);max-width:60ch}
+
+/* competencies */
+.comp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;margin-left:232px;padding:0;list-style:none}
+.comp li{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-weight:500}
+.comp li::before{content:"PASS";font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--accent);border:1px solid var(--accent);border-radius:4px;padding:2px 6px;height:fit-content;margin-top:3px}
+
+/* experience */
+.job{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:32px 0;border-bottom:1px solid var(--line)}
+.job:first-of-type{padding-top:0}
+.job .when{font-family:var(--font-mono);font-size:13.5px;color:var(--muted)}
+.job .when strong{display:block;color:var(--ink);font-weight:500;margin-bottom:2px}
+.job h3{font-size:26px;font-weight:700}
+.job .co{font-weight:600;color:var(--accent);margin:4px 0 6px}
+.job .what{color:var(--muted);margin-bottom:14px}
+.job ul{margin:0;padding-left:20px;display:grid;gap:8px}
+.job li::marker{color:var(--accent)}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-left:232px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.step .n{font-family:var(--font-mono);font-size:12.5px;color:var(--accent)}
+.step h3{font-size:20px;font-weight:700;margin:8px 0}
+.step p{font-size:15px;color:var(--muted)}
+.metrics{margin:28px 0 0 232px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.metrics .label{margin-right:8px}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-left:232px}
+.group{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.group h3{font-size:17px;font-weight:700;margin-bottom:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--font-mono);font-size:13px;padding:4px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg)}
+
+/* scope */
+.scope{margin-left:232px;display:grid;gap:0}
+.scope div{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:14px 0;border-bottom:1px solid var(--line)}
+.scope dt{font-family:var(--font-mono);font-size:13px;color:var(--accent);padding-top:2px}
+.scope dd{margin:0;color:var(--muted)}
+dl.scope{margin-top:0;margin-bottom:0}
+
+/* credentials */
+.cred{margin-left:232px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.cred .group p{color:var(--muted)}
+.cred .big{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--ink);margin-bottom:4px}
+
+/* contact */
+.contact{padding:72px 0 96px;border-top:1px solid var(--line)}
+.contact-card{background:var(--ink);color:var(--bg);border-radius:16px;padding:48px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px;align-items:end}
+.contact-card h2{font-size:clamp(32px,5vw,52px);font-weight:800}
+.contact-card p{margin-top:14px;opacity:.8;max-width:44ch}
+.contact-links{display:grid;gap:12px}
+.contact-links a{display:flex;justify-content:space-between;gap:12px;padding:14px 16px;border:1px solid color-mix(in srgb,var(--bg) 30%,transparent);border-radius:10px;text-decoration:none;font-weight:600;overflow-wrap:anywhere}
+.contact-links a:hover{background:color-mix(in srgb,var(--bg) 12%,transparent)}
+.contact-links span{font-family:var(--font-mono);font-size:12.5px;opacity:.7;white-space:nowrap;padding-top:3px}
+footer{padding:0 0 40px;color:var(--muted);font-size:14px}
+
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .sec-head,.about-grid,.job{grid-template-columns:1fr;gap:12px}
+  .comp,.steps,.metrics,.skills,.scope,.cred{margin-left:0}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .about-body{grid-template-columns:1fr}
+  .contact-card{grid-template-columns:1fr;padding:32px 24px}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .hero{padding:36px 0 48px}
+  section{padding:52px 0}
+  .comp,.steps,.skills,.cred{grid-template-columns:1fr}
+  .scope div{grid-template-columns:1fr;gap:4px}
+  .nav ul{display:none}
+  .runlog li{grid-template-columns:auto 1fr}
+  .runlog .detail{grid-column:2;text-align:left}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Priyadharsini V M</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#credentials">Credentials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="status"><span class="dot" aria-hidden="true"></span>Open to Senior QA and QA Lead roles</span>
+      <h1>Priyadharsini V M</h1>
+      <p class="role">Senior Quality Assurance Engineer and QA Lead</p>
+      <p class="lede">14+ years making sure releases are ready before they ship. I own test strategy, test automation and go/no-go sign-off for web, mobile and enterprise products built by Agile teams. Based in Dubai, UAE.</p>
+      <div class="cta">
+        <a class="btn primary" href="#contact">Get in touch</a>
+        <a class="btn ghost" href="#experience">See my experience</a>
+      </div>
+    </div>
+
+    <aside class="runlog" aria-label="Summary of what I deliver">
+      <div class="runlog-head"><span>RUN: QA-LEAD-PROFILE</span><span>14+ YRS</span></div>
+      <ol>
+        <li><span class="tick">PASS</span><span class="name">Test strategy and planning</span><span class="detail">estimates, schedules</span></li>
+        <li><span class="tick">PASS</span><span class="name">UI and API automation</span><span class="detail">Selenium, Playwright, Rest Assured</span></li>
+        <li><span class="tick">PASS</span><span class="name">Mobile testing</span><span class="detail">Appium, iOS, Android</span></li>
+        <li><span class="tick">PASS</span><span class="name">CI/CD integration</span><span class="detail">Jenkins, GitHub Actions, Azure DevOps</span></li>
+        <li><span class="tick">PASS</span><span class="name">SIT and UAT coordination</span><span class="detail">onsite and offshore</span></li>
+        <li><span class="tick">PASS</span><span class="name">Quality gates and go/no-go</span><span class="detail">release sign-off</span></li>
+      </ol>
+      <div class="runlog-foot">Domains: E-Commerce, Retail, Inventory, Banking, Insurance</div>
+    </aside>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="label">About</div>
+    <div class="about-body">
+      <p>I work where quality and delivery meet: translating requirements into test scenarios, giving product and engineering early feedback on risk, and telling the team plainly whether a release is ready.</p>
+      <p>Most recently I held overall responsibility for release quality at Cin7Core, a cloud inventory, order and warehouse platform that connects to e-commerce marketplaces, POS and retail channels, and accounting systems.</p>
+      <p>Earlier years were spent leading onsite and offshore test teams on banking, insurance, web and mobile programmes at Cognizant, in both Agile (Scrum) and Waterfall delivery.</p>
+      <p>I coach QA and engineering teammates on test design and automation, and I hold the line on reliability standards, process compliance and quality gates.</p>
+      <p>I coordinate System Integration Testing and UAT across multiple client and release teams, managing dependencies, defect triage and readiness sign-off.</p>
+    </div>
+  </div>
+</section>
+
+<section id="competencies">
+  <div class="wrap">
+    <div class="sec-head"><div class="label">Core competencies</div><h2>What I take responsibility for</h2></div>
+    <ul class="comp">
+      <li>Test automation frameworks, UI and API</li>
+      <li>Quality gates and go/no-go governance</li>
+      <li>CI/CD integration</li>
+      <li>Early risk feedback to product owners</li>
+      <li>Agile feature-team quality engineering</li>
+      <li>Cross-team dependency, SIT and UAT coordination</li>
+      <li>Functional and non-functional requirement analysis</li>
+      <li>Test metrics and status reporting</li>
+      <li>Mentoring on test design and automation</li>
+      <li>Test strategy, planning and estimation</li>
+      <li>Daily defect triage and closure</li>
+      <li>QA process compliance and knowledge management</li>
+    </ul>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><div class="label">Experience</div><h2>Where I have done the work</h2></div>
+
+    <article class="job">
+      <div class="when"><strong>Jan 2022 to Jul 2025</strong>Cin7Core Pvt Ltd</div>
+      <div>
+        <h3>Senior QA Engineer / Technical Manager</h3>
+        <p class="co">Cin7Core</p>
+        <p class="what">Cloud inventory, order and warehouse management platform for Retail, Wholesale and E-Commerce sellers.</p>
+        <ul>
+          <li>Held overall responsibility for testing quality and on-time delivery of every release, on a platform integrating with marketplaces, POS and retail channels, and accounting systems.</li>
+          <li>Grew automated regression coverage, which cut regression cycle time and made releases more predictable.</li>
+          <li>Joined weekly release planning with the CTO, Product and Engineering, presenting QA status, open risks, quality gates and go/no-go recommendations.</li>
+          <li>Built and managed a QA team inside the development organisation, including hiring, onboarding, coaching and mentoring.</li>
+          <li>Reported coverage, execution status, defect density, re-open and leakage trends, and severity-wise outstanding defects to management.</li>
+          <li>Ran daily defect discussions with developers to drive fixes to closure inside the release window, and owned QA documentation and training.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="job">
+      <div class="when"><strong>Apr 2021 to Dec 2021</strong>DEAR Systems</div>
+      <div>
+        <h3>QA Engineer</h3>
+        <p class="co">DEAR Systems</p>
+        <p class="what">Inventory and order management SaaS serving Retail and E-Commerce customers.</p>
+        <ul>
+          <li>Tested APIs and validated integrations across third-party connectors.</li>
+          <li>Wrote test plans, test matrices and requirement-to-test traceability, then ran functional, integration and regression cycles.</li>
+          <li>Took part in SQARB (Software Quality Assurance Review Board) reviews against entry and exit criteria.</li>
+          <li>Handled escalated customer tickets by reproducing issues with users and validating fixes before release.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="job">
+      <div class="when"><strong>Aug 2020 to Feb 2021</strong>Independent Consultant</div>
+      <div>
+        <h3>Senior Test Analyst (Freelance)</h3>
+        <p class="co">Independent Consultant</p>
+        <ul>
+          <li>Analysed use cases, interaction designs, functional specifications and user stories, and tracked changing requirements into test scope.</li>
+          <li>Ran System Integration and Regression Testing, and supported User Acceptance Testing through to sign-off.</li>
+          <li>Managed test case creation and execution in TestRail and sent stakeholders detailed status reports.</li>
+          <li>Recognised by client managers for catching critical requirement changes early.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="job">
+      <div class="when"><strong>Nov 2009 to Mar 2016</strong>Cognizant Technology Solutions</div>
+      <div>
+        <h3>Associate, Test Lead / Onsite Coordinator</h3>
+        <p class="co">Cognizant Technology Solutions</p>
+        <p class="what">Banking, insurance, web and mobile application programmes.</p>
+        <ul>
+          <li>Led cross-functional onsite and offshore test teams under the onsite–offshore delivery model.</li>
+          <li>Acted as onsite coordinator, working with client teams on risks and issues and briefing offshore on scope and priorities.</li>
+          <li>Designed test plans and test cases for banking, web and mobile platforms, and oversaw execution and defect tracking to resolution.</li>
+          <li>Reported coverage, progress and defect density to delivery leadership, and facilitated scrum ceremonies.</li>
+          <li>Contributed to estimation, planning, resource allocation, requirement and test plan reviews, and mentoring.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="job" style="border-bottom:0">
+      <div class="when"><strong>Jul 2006 to Nov 2009</strong>Hexaware Technologies</div>
+      <div>
+        <h3>Test Analyst</h3>
+        <p class="co">Hexaware Technologies</p>
+        <ul>
+          <li>Ran manual and automated test cases across multiple applications.</li>
+          <li>Automated functional and regression suites with QTP and Selenium, and paired Cucumber with Selenium for BDD.</li>
+          <li>Used Maven, Jenkins and GitHub for builds, CI/CD and version control, and Postman for API testing and service simulation.</li>
+          <li>Managed tests and defects in Mercury Quality Centre.</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="approach">
+  <div class="wrap">
+    <div class="sec-head"><div class="label">Approach</div><h2>How a release earns its sign-off</h2></div>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h3>Understand</h3><p>Analyse functional and non-functional requirements, and flag product and design risks early.</p></div>
+      <div class="step"><div class="n">02</div><h3>Plan</h3><p>Write the test strategy, design and execution plans, coverage matrices, schedules and estimates.</p></div>
+      <div class="step"><div class="n">03</div><h3>Execute</h3><p>Run and automate UI and API tests, and triage defects with developers every day until they close.</p></div>
+      <div class="step"><div class="n">04</div><h3>Decide</h3><p>Report the metrics, apply the quality gates and give a clear go/no-go recommendation.</p></div>
+    </div>
+    <div class="metrics">
+      <span class="label">Metrics I report</span>
+      <span class="chip">coverage</span><span class="chip">execution progress</span><span class="chip">pass/fail trends</span><span class="chip">defect density</span><span class="chip">defect ageing</span><span class="chip">leakage</span>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><div class="label">Skills</div><h2>Tools and testing scope</h2></div>
+    <div class="skills">
+      <div class="group"><h3>Automation and testing</h3><div class="chips"><span class="chip">Selenium</span><span class="chip">Playwright</span><span class="chip">QTP/UFT</span><span class="chip">Appium</span><span class="chip">Espresso</span><span class="chip">XCUITest</span><span class="chip">TestNG</span><span class="chip">Cucumber (BDD)</span><span class="chip">Fitnesse</span><span class="chip">Rest Assured</span><span class="chip">Postman</span></div></div>
+      <div class="group"><h3>Programming</h3><div class="chips"><span class="chip">Java</span><span class="chip">C</span><span class="chip">C++</span><span class="chip">SQL</span></div></div>
+      <div class="group"><h3>CI/CD and version control</h3><div class="chips"><span class="chip">Jenkins</span><span class="chip">GitHub Actions</span><span class="chip">Azure DevOps</span><span class="chip">Maven</span><span class="chip">GitHub</span><span class="chip">VSS</span></div></div>
+      <div class="group"><h3>Test management and defects</h3><div class="chips"><span class="chip">JIRA</span><span class="chip">HP/Micro Focus ALM</span><span class="chip">Azure DevOps</span><span class="chip">TestRail</span><span class="chip">Bugzilla</span></div></div>
+      <div class="group"><h3>Databases and ETL</h3><div class="chips"><span class="chip">Oracle 10g</span><span class="chip">Teradata SQL Assistant</span><span class="chip">Informatica</span><span class="chip">Business Objects</span></div></div>
+      <div class="group"><h3>Operating systems</h3><div class="chips"><span class="chip">Windows</span><span class="chip">UNIX</span></div></div>
+    </div>
+    <dl class="scope" style="margin-top:32px">
+      <div><dt>Test types</dt><dd>System, System Integration, Regression, Functional, End-to-End, API/Integration, Compatibility, Usability, Smoke/Sanity and User Acceptance Testing, plus UI and API test automation.</dd></div>
+      <div><dt>Platforms</dt><dd>Web applications, and native, hybrid and web mobile apps on iOS and Android, validated on physical devices, emulators and simulators across screen sizes and OS versions.</dd></div>
+      <div><dt>Methodology</dt><dd>Agile (Scrum) feature-team delivery and Waterfall, including sprint ceremonies, backlog grooming and release planning, with BDD in Cucumber.</dd></div>
+      <div><dt>Reporting</dt><dd>Daily execution and defect summaries, weekly consolidated metrics packs, and end-of-cycle test summary reports with coverage and defect analysis.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="credentials">
+  <div class="wrap">
+    <div class="sec-head"><div class="label">Credentials</div><h2>Certifications and education</h2></div>
+    <div class="cred">
+      <div class="group"><div class="big">ISTQB, CSTE, HP AIS</div><p>Certified in testing practice and tooling.</p></div>
+      <div class="group"><div class="big">B.E.</div><p>K.L.N. College of Engineering, Anna University, 2002 to 2006.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-card">
+      <div>
+        <h2>Let's talk about quality on your next release.</h2>
+        <p>I am based in Ras Al Khor, Dubai, UAE. References are available on request.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:dharsini1685@gmail.com">dharsini1685@gmail.com <span>Email</span></a>
+        <a href="https://linkedin.com/in/priyadharsini-vaithiyam-mohan" rel="noopener">linkedin.com/in/priyadharsini-vaithiyam-mohan <span>LinkedIn</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer><div class="wrap">© Priyadharsini V M. Senior QA Engineer and QA Lead.</div></footer>
+</body>
+</html>
